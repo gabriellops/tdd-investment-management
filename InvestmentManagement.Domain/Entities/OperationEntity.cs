@@ -6,7 +6,7 @@ namespace InvestmentManagement.Domain.Entities
     {
         public OperationEntity() { }
 
-        public OperationEntity(int portfolioId, int assetId, EAssetTypeEnum type, decimal price)
+        public OperationEntity(int portfolioId, int assetId, string type, decimal price)
         {
             portfolioId = portfolioId;
             AssetId = assetId;
@@ -15,7 +15,7 @@ namespace InvestmentManagement.Domain.Entities
             CreatedAt = DateTime.Now;
         }
 
-        public EAssetTypeEnum Type { get; private set; }
+        public string Type { get; private set; }
         public decimal  Price { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
