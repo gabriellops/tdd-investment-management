@@ -16,6 +16,7 @@ namespace InvestmentManagement.Domain.Entities
         public string Name { get; private set; }
         public string Code { get; private set; }
         public EAssetTypeEnum Type { get; private set; }
+        public int Quantity { get; private set; }
         public decimal CurrentPrice { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
