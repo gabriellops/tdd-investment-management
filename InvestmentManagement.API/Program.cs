@@ -1,3 +1,7 @@
+using InvestmentManagement.Domain.Settings;
+using InvestmentManagement.Infrastructure.Contexts;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +11,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+var appSetting = builder.Configuration.GetSection(nameof(AppSetting)).Get<AppSetting>();
+builder.Services.AddSingleton(appSetting);
+
+
+builder.Services.AddDbContext<InvestmentContext>(options =>
+{
+    options.UseSqlServer(appSetting.SqlServerConnection);
+});
+ 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

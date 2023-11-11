@@ -13,7 +13,7 @@ namespace InvestmentManagement.Domain.Entities
             Active = active;
             CreatedAt = DateTime.Now;
 
-            InvestmentAccount = new List<InvestmentAccountEntity>();
+            InvestmentAccounts = new List<InvestmentAccountEntity>();
         }
 
         public string CompanyName { get; private set; }
@@ -23,6 +23,6 @@ namespace InvestmentManagement.Domain.Entities
         public bool Active { get; set; }
         public DateTime CreatedAt { get; private set; }
 
-        public List<InvestmentAccountEntity> InvestmentAccount { get; private set; }
+        public ICollection<InvestmentAccountEntity> InvestmentAccounts { get; private set; }
     }
 }
