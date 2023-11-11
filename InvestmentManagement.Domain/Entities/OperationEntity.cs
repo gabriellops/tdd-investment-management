@@ -8,7 +8,7 @@ namespace InvestmentManagement.Domain.Entities
 
         public OperationEntity(int portfolioId, int assetId, string type, decimal price)
         {
-            portfolioId = portfolioId;
+            PortfolioId = portfolioId;
             AssetId = assetId;
             Type = type;
             Price = price;
