@@ -11,6 +11,7 @@ using Xunit;
 
 namespace InvestmentManagement.Tests.src.Domain.Services
 {
+    [Trait("Service", "User Service")]
     public class UserServiceTest
     {
         private readonly Fixture _fixture;

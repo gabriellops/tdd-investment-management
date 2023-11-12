@@ -26,7 +26,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         }
 
         [Fact]
-        public async Task Get_Users_ReturnsAllUsers()
+        public async Task Get_InvestmentAccount_ReturnsAllInvestmentAccount()
         {
             var entities = _fixture.Create<List<InvestmentAccountEntity>>();
 
@@ -41,7 +41,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
 
 
         [Fact]
-        public async Task Get_UserById_ReturnsUser()
+        public async Task Get_InvestmentAccountById_ReturnsInvestmentAccount()
         {
             var entity = _fixture.Create<InvestmentAccountEntity>();
 
@@ -55,7 +55,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         }
 
         [Fact]
-        public async Task Post_User_ShouldBeRegisteredUser()
+        public async Task Post_InvestmentAccount_ShouldBeRegisteredInvestmentAccount()
         {
             var entity = _fixture.Create<InvestmentAccountEntity>();
 
@@ -75,7 +75,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         }
 
         [Fact]
-        public async Task Put_User_ShouldBeEditedUser()
+        public async Task Put_InvestmentAccount_ShouldBeEditedInvestmentAccount()
         {
             var entity = _fixture.Create<InvestmentAccountEntity>();
 
@@ -98,7 +98,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         }
 
         [Fact]
-        public async Task Delete_User_ShouldBeDeletedUser()
+        public async Task Delete_InvestmentAccount_ShouldBeDeletedInvestmentAccount()
         {
             var entity = _fixture.Create<InvestmentAccountEntity>();
 
