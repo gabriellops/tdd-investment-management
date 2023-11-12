@@ -11,43 +11,44 @@ using Xunit;
 
 namespace InvestmentManagement.Tests.src.Domain.Services
 {
-    public class UserServiceTest
+    [Trait("Service", "Investment Account Service")]
+    public class InvestmentAccountServiceTest
     {
         private readonly Fixture _fixture;
-        private readonly IUserRepository _userRepository;
+        private readonly IInvestmentAccountRepository _investmentAccountRepository;
         private readonly AppSetting _appSetting;
 
-        public UserServiceTest()
+        public InvestmentAccountServiceTest()
         {
             _fixture = FixtureConfig.Get();
-            _userRepository = Substitute.For<IUserRepository>();
+            _investmentAccountRepository = Substitute.For<IInvestmentAccountRepository>();
             _appSetting = Substitute.For<AppSetting>();
         }
 
         [Fact]
         public async Task Get_Users_ReturnsAllUsers()
         {
-            var entities = _fixture.Create<List<UserEntity>>();
+            var entities = _fixture.Create<List<InvestmentAccountEntity>>();
 
-            _userRepository.ListAsync(Arg.Any<Expression<Func<UserEntity, bool>>>())
+            _investmentAccountRepository.ListAsync(Arg.Any<Expression<Func<InvestmentAccountEntity, bool>>>())
                            .Returns(entities);
 
-            var service = new UserService(_userRepository, _appSetting);
+            var service = new InvestmentAccountService(_investmentAccountRepository);
             var response = await service.GetAllAsync();
 
-            response.ToList().Count.Should().BeGreaterThan(0);
+            response.Count.Should().BeGreaterThan(0);
         }
 
 
         [Fact]
         public async Task Get_UserById_ReturnsUser()
         {
-            var entity = _fixture.Create<UserEntity>();
+            var entity = _fixture.Create<InvestmentAccountEntity>();
 
-            _userRepository.FindAsync(Arg.Any<Expression<Func<UserEntity, bool>>>())
+            _investmentAccountRepository.FindAsync(Arg.Any<Expression<Func<InvestmentAccountEntity, bool>>>())
                            .Returns(entity);
 
-            var service = new UserService(_userRepository, _appSetting);
+            var service = new InvestmentAccountService(_investmentAccountRepository);
             var response = await service.GetByIdAsync(entity.Id);
 
             response.Id.Should().Be(entity.Id);
@@ -56,12 +57,12 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         [Fact]
         public async Task Post_User_ShouldBeRegisteredUser()
         {
-            var entity = _fixture.Create<UserEntity>();
+            var entity = _fixture.Create<InvestmentAccountEntity>();
 
-            _userRepository.AddAsync(Arg.Any<UserEntity>())
+            _investmentAccountRepository.AddAsync(Arg.Any<InvestmentAccountEntity>())
                            .Returns(Task.CompletedTask);
 
-            var service = new UserService(_userRepository, _appSetting);
+            var service = new InvestmentAccountService(_investmentAccountRepository);
 
             try
             {
@@ -76,15 +77,15 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         [Fact]
         public async Task Put_User_ShouldBeEditedUser()
         {
-            var entity = _fixture.Create<UserEntity>();
+            var entity = _fixture.Create<InvestmentAccountEntity>();
 
-            _userRepository.FindAsNoTrackingAsync(Arg.Any<Expression<Func<UserEntity, bool>>>())
+            _investmentAccountRepository.FindAsNoTrackingAsync(Arg.Any<Expression<Func<InvestmentAccountEntity, bool>>>())
                            .Returns(entity);
 
-            _userRepository.EditAsync(Arg.Any<UserEntity>())
+            _investmentAccountRepository.EditAsync(Arg.Any<InvestmentAccountEntity>())
                            .Returns(Task.CompletedTask);
 
-            var service = new UserService(_userRepository, _appSetting);
+            var service = new InvestmentAccountService(_investmentAccountRepository);
 
             try
             {
@@ -99,15 +100,15 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         [Fact]
         public async Task Delete_User_ShouldBeDeletedUser()
         {
-            var entity = _fixture.Create<UserEntity>();
+            var entity = _fixture.Create<InvestmentAccountEntity>();
 
-            _userRepository.FindAsync(Arg.Any<int>())
+            _investmentAccountRepository.FindAsync(Arg.Any<int>())
                            .Returns(entity);
 
-            _userRepository.RemoveAsync(Arg.Any<UserEntity>())
+            _investmentAccountRepository.RemoveAsync(Arg.Any<InvestmentAccountEntity>())
                            .Returns(Task.CompletedTask);
 
-            var service = new UserService(_userRepository, _appSetting);
+            var service = new InvestmentAccountService(_investmentAccountRepository);
 
             try
             {

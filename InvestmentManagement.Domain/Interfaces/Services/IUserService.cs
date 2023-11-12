@@ -1,6 +1,5 @@
 ﻿using InvestmentManagement.Domain.Contracts.Response;
 using InvestmentManagement.Domain.Entities;
-using System.Linq.Expressions;
 
 namespace InvestmentManagement.Domain.Interfaces.Services
 {
