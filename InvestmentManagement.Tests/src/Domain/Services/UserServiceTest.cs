@@ -30,16 +30,28 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         {
             var entities = _fixture.Create<List<UserEntity>>();
 
-            var userRepository = Substitute.For<IUserRepository>();
-            userRepository.ListAsync(Arg.Any<Expression<Func<UserEntity, bool>>>())
+            _userRepository.ListAsync(Arg.Any<Expression<Func<UserEntity, bool>>>())
                           .ReturnsForAnyArgs(entities);
 
-            var mockAppSetting = Substitute.For<AppSetting>();
-
-            var service = new UserService(userRepository, mockAppSetting);
+            var service = new UserService(_userRepository, _appSetting);
             var response = await service.GetAllAsync();
 
             response.ToList().Count().Should().BeGreaterThan(0);
+        }
+
+
+        [Fact]
+        public async Task Get_UserById_ReturnsUser()
+        {
+            var entity = _fixture.Create<UserEntity>();
+
+            _userRepository.FindAsync(Arg.Any<Expression<Func<UserEntity, bool>>>())
+                           .ReturnsForAnyArgs(entity);
+
+            var service = new UserService(_userRepository, _appSetting);
+            var response = await service.GetByIdAsync(entity.Id);
+
+            response.Id.Should().Be(entity.Id);
         }
     }
 }
