@@ -28,7 +28,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entities = _fixture.Create<List<AssetEntity>>();
 
             _assetRepository.ListAsync(Arg.Any<Expression<Func<AssetEntity, bool>>>())
-                           .Returns(entities);
+                            .Returns(entities);
 
             var service = new AssetService(_assetRepository);
             var response = await service.GetAllAsync();
@@ -43,7 +43,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<AssetEntity>();
 
             _assetRepository.FindAsync(Arg.Any<Expression<Func<AssetEntity, bool>>>())
-                           .Returns(entity);
+                            .Returns(entity);
 
             var service = new AssetService(_assetRepository);
             var response = await service.GetByIdAsync(entity.Id);
@@ -57,7 +57,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<AssetEntity>();
 
             _assetRepository.AddAsync(Arg.Any<AssetEntity>())
-                           .Returns(Task.CompletedTask);
+                            .Returns(Task.CompletedTask);
 
             var service = new AssetService(_assetRepository);
 
@@ -77,10 +77,10 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<AssetEntity>();
 
             _assetRepository.FindAsNoTrackingAsync(Arg.Any<Expression<Func<AssetEntity, bool>>>())
-                           .Returns(entity);
+                            .Returns(entity);
 
             _assetRepository.EditAsync(Arg.Any<AssetEntity>())
-                           .Returns(Task.CompletedTask);
+                            .Returns(Task.CompletedTask);
 
             var service = new AssetService(_assetRepository);
 
@@ -100,10 +100,10 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<AssetEntity>();
 
             _assetRepository.FindAsync(Arg.Any<int>())
-                           .Returns(entity);
+                            .Returns(entity);
 
             _assetRepository.RemoveAsync(Arg.Any<AssetEntity>())
-                           .Returns(Task.CompletedTask);
+                            .Returns(Task.CompletedTask);
 
             var service = new AssetService(_assetRepository);
 

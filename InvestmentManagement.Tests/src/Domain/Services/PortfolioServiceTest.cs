@@ -28,7 +28,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entities = _fixture.Create<List<PortfolioEntity>>();
 
             _portfolioRepository.ListAsync(Arg.Any<Expression<Func<PortfolioEntity, bool>>>())
-                           .Returns(entities);
+                                .Returns(entities);
 
             var service = new PortfolioService(_portfolioRepository);
             var response = await service.GetAllAsync();
@@ -43,7 +43,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<PortfolioEntity>();
 
             _portfolioRepository.FindAsync(Arg.Any<Expression<Func<PortfolioEntity, bool>>>())
-                           .Returns(entity);
+                                .Returns(entity);
 
             var service = new PortfolioService(_portfolioRepository);
             var response = await service.GetByIdAsync(entity.Id);
@@ -57,7 +57,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<PortfolioEntity>();
 
             _portfolioRepository.AddAsync(Arg.Any<PortfolioEntity>())
-                           .Returns(Task.CompletedTask);
+                                .Returns(Task.CompletedTask);
 
             var service = new PortfolioService(_portfolioRepository);
 
@@ -77,10 +77,10 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<PortfolioEntity>();
 
             _portfolioRepository.FindAsNoTrackingAsync(Arg.Any<Expression<Func<PortfolioEntity, bool>>>())
-                           .Returns(entity);
+                                .Returns(entity);
 
             _portfolioRepository.EditAsync(Arg.Any<PortfolioEntity>())
-                           .Returns(Task.CompletedTask);
+                                .Returns(Task.CompletedTask);
 
             var service = new PortfolioService(_portfolioRepository);
 
@@ -100,10 +100,10 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<PortfolioEntity>();
 
             _portfolioRepository.FindAsync(Arg.Any<int>())
-                           .Returns(entity);
+                                .Returns(entity);
 
             _portfolioRepository.RemoveAsync(Arg.Any<PortfolioEntity>())
-                           .Returns(Task.CompletedTask);
+                                .Returns(Task.CompletedTask);
 
             var service = new PortfolioService(_portfolioRepository);
 

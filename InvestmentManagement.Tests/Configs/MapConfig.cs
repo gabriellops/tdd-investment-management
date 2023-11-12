@@ -1,4 +1,4 @@
-﻿/*using AutoMapper;
+﻿using AutoMapper;
 
 namespace InvestmentManagement.Tests.Configs
 {
@@ -14,4 +14,4 @@ namespace InvestmentManagement.Tests.Configs
             return mockMapper.CreateMapper();
         }
     }
-}*/
+}

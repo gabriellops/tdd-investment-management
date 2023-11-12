@@ -28,7 +28,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entities = _fixture.Create<List<OperationEntity>>();
 
             _operationRepository.ListAsync(Arg.Any<Expression<Func<OperationEntity, bool>>>())
-                           .Returns(entities);
+                                .Returns(entities);
 
             var service = new OperationService(_operationRepository);
             var response = await service.GetAllAsync();
@@ -43,7 +43,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<OperationEntity>();
 
             _operationRepository.FindAsync(Arg.Any<Expression<Func<OperationEntity, bool>>>())
-                           .Returns(entity);
+                                .Returns(entity);
 
             var service = new OperationService(_operationRepository);
             var response = await service.GetByIdAsync(entity.Id);
@@ -57,7 +57,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<OperationEntity>();
 
             _operationRepository.AddAsync(Arg.Any<OperationEntity>())
-                           .Returns(Task.CompletedTask);
+                                .Returns(Task.CompletedTask);
 
             var service = new OperationService(_operationRepository);
 
@@ -77,10 +77,10 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<OperationEntity>();
 
             _operationRepository.FindAsNoTrackingAsync(Arg.Any<Expression<Func<OperationEntity, bool>>>())
-                           .Returns(entity);
+                                .Returns(entity);
 
             _operationRepository.EditAsync(Arg.Any<OperationEntity>())
-                           .Returns(Task.CompletedTask);
+                                .Returns(Task.CompletedTask);
 
             var service = new OperationService(_operationRepository);
 
@@ -100,10 +100,10 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var entity = _fixture.Create<OperationEntity>();
 
             _operationRepository.FindAsync(Arg.Any<int>())
-                           .Returns(entity);
+                                .Returns(entity);
 
             _operationRepository.RemoveAsync(Arg.Any<OperationEntity>())
-                           .Returns(Task.CompletedTask);
+                                .Returns(Task.CompletedTask);
 
             var service = new OperationService(_operationRepository);
 
