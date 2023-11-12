@@ -15,10 +15,14 @@ namespace InvestmentManagement.Tests.src.Domain.Services
     public class UserServiceTest
     {
         private readonly Fixture _fixture;
+        private readonly IUserRepository _userRepository;
+        private readonly AppSetting _appSetting;
 
         public UserServiceTest()
         {
             _fixture = FixtureConfig.Get();
+            _userRepository = Substitute.For<IUserRepository>();
+            _appSetting = Substitute.For<AppSetting>();
         }
 
         [Fact]
