@@ -3,7 +3,6 @@ using FluentAssertions;
 using InvestmentManagement.Domain.Entities;
 using InvestmentManagement.Domain.Interfaces.Repositories;
 using InvestmentManagement.Domain.Services;
-using InvestmentManagement.Domain.Settings;
 using InvestmentManagement.Tests.Configs;
 using NSubstitute;
 using System.Linq.Expressions;
@@ -16,13 +15,11 @@ namespace InvestmentManagement.Tests.src.Domain.Services
     {
         private readonly Fixture _fixture;
         private readonly IInvestmentAccountRepository _investmentAccountRepository;
-        private readonly AppSetting _appSetting;
 
         public InvestmentAccountServiceTest()
         {
             _fixture = FixtureConfig.Get();
             _investmentAccountRepository = Substitute.For<IInvestmentAccountRepository>();
-            _appSetting = Substitute.For<AppSetting>();
         }
 
         [Fact]
@@ -36,7 +33,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
             var service = new InvestmentAccountService(_investmentAccountRepository);
             var response = await service.GetAllAsync();
 
-            response.Count.Should().BeGreaterThan(0);
+            response.ToList().Count.Should().BeGreaterThan(0);
         }
 
 
