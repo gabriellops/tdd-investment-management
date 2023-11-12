@@ -18,5 +18,6 @@ namespace InvestmentManagement.Domain.Interfaces.Repositories
         Task<List<T>> ListPaginationAsync<K>(Expression<Func<T, bool>> expression, Expression<Func<T, K>> sortExpression, int page, int quantity);
         Task AddAsync(T item);
         Task RemoveAsync(T item);
+        Task EditAsync(T item);
     }
 }

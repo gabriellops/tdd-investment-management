@@ -34,25 +34,36 @@ namespace InvestmentManagement.Domain.Services
         {
             var entity = await _baseRepository.FindAsync(x => x.Id == id && x.Active);
 
+            return entity is null
+                ? throw new InformationException(Enums.EStatusExceptionEnum.NotFound, $"No data found for the Id {id}.")
+                : entity;
+        }
+
+        public async Task AddAsync(T entity)
+        {
+            await _baseRepository.AddAsync(entity);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var entity = await _baseRepository.FindAsync(id);
+
             if (entity is null)
-                throw new InformationException(Enums.EStatusExceptionEnum.NotFound, $"No data found for the Id {id}.");
+                throw new InformationException(Enums.EStatusExceptionEnum.NotFound, $"No data found for the Id {entity.Id}.");
 
-            return entity;
+            entity.Active = false;
+
+            await _baseRepository.EditAsync(entity);
         }
 
-        public Task AddAsync(T entity)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
-        }
+            var find = await _baseRepository.FindAsNoTrackingAsync(x => x.Id == entity.Id && x.Active);
 
-        public Task DeleteAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+            if (find is null)
+                throw new InformationException(Enums.EStatusExceptionEnum.NotFound, $"No data found for the Id {entity.Id}.");
 
-        public Task UpdateAsync(T entity)
-        {
-            throw new NotImplementedException();
+            await _baseRepository.EditAsync(entity);
         }
     }
 }
