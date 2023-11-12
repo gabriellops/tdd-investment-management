@@ -1,5 +1,10 @@
-﻿using InvestmentManagement.Domain.Entities;
+﻿using AutoFixture;
+using FluentAssertions;
+using InvestmentManagement.Domain.Entities;
+using InvestmentManagement.Domain.Interfaces.Repositories;
+using InvestmentManagement.Domain.Services;
 using InvestmentManagement.Domain.Settings;
+using InvestmentManagement.Tests.Configs;
 using NSubstitute;
 using System.Linq.Expressions;
 using Xunit;
@@ -9,6 +14,13 @@ namespace InvestmentManagement.Tests.src.Domain.Services
     [Trait("Service", "User Service")]
     public class UserServiceTest
     {
+        private readonly Fixture _fixture;
+
+        public UserServiceTest()
+        {
+            _fixture = FixtureConfig.Get();
+        }
+
         [Fact]
         public async Task Get_Users_ReturnsAllUsers()
         {
@@ -16,14 +28,14 @@ namespace InvestmentManagement.Tests.src.Domain.Services
 
             var userRepository = Substitute.For<IUserRepository>();
             userRepository.ListAsync(Arg.Any<Expression<Func<UserEntity, bool>>>())
-                          .ReturnsForAnyArgsAsync(entities);
+                          .ReturnsForAnyArgs(entities);
 
-            var mockAppSetting = Substitute.For<AppSetting>;
+            var mockAppSetting = Substitute.For<AppSetting>();
 
-            var service = new UserService(userRepository, mockAppSetting, mockAppSetting);
-            var response = await service.ObterTodosAsync();
+            var service = new UserService(userRepository, mockAppSetting);
+            var response = await service.GetAllAsync();
 
-            response.Should().Be.True(response.ToList().Count() > 0);
+            response.ToList().Count().Should().BeGreaterThan(0);
         }
     }
 }

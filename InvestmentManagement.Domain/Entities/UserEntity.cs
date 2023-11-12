@@ -20,7 +20,6 @@ namespace InvestmentManagement.Domain.Entities
         public string Cnpj { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }
-        public bool Active { get; set; }
         public DateTime CreatedAt { get; private set; }
 
         public ICollection<InvestmentAccountEntity> InvestmentAccounts { get; private set; }
