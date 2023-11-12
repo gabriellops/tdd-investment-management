@@ -26,7 +26,7 @@ namespace InvestmentManagement.Tests.src.Domain.Services
         }
 
         [Fact]
-        public async Task Get_InvestmentAccount_ReturnsAllInvestmentAccount()
+        public async Task Get_InvestmentAccount_ReturnsAllInvestmentAccounts()
         {
             var entities = _fixture.Create<List<InvestmentAccountEntity>>();
 
