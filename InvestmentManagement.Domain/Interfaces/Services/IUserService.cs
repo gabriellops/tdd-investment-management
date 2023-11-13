@@ -1,4 +1,4 @@
-﻿using InvestmentManagement.Domain.Contracts.Response;
+﻿using InvestmentManagement.Domain.Contracts.Responses;
 using InvestmentManagement.Domain.Entities;
 
 namespace InvestmentManagement.Domain.Interfaces.Services

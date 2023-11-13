@@ -1,4 +1,4 @@
-﻿namespace InvestmentManagement.Domain.Contracts.Response
+﻿namespace InvestmentManagement.Domain.Contracts.Responses
 {
     public class AuthenticateResponse
     {

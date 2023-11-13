@@ -4,13 +4,13 @@ namespace InvestmentManagement.Domain.Entities
 {
     public class UserEntity : BaseEntity
     {
-        public UserEntity(string companyName, string cnpj, string email, string password, bool active)
+        public UserEntity(string companyName, string cnpj, string email, string password)
         {
             CompanyName = companyName;
             Cnpj = cnpj;
             Email = email;
             Password = password;
-            Active = active;
+
             CreatedAt = DateTime.Now;
 
             InvestmentAccounts = new List<InvestmentAccountEntity>();

@@ -7,7 +7,7 @@
             Active = true;
         }
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public bool Active { get; set; }
     }
 }

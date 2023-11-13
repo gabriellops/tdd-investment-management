@@ -15,9 +15,9 @@ namespace InvestmentManagement.Domain.Services
             _baseRepository = baseRepository;
         }
 
-        public Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            return await _baseRepository.ListAsync(expression);
         }
 
         public Task<T> GetAsync(Expression<Func<T, bool>> expression)

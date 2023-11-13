@@ -1,9 +1,8 @@
-﻿using InvestmentManagement.Domain.Contracts.Response;
+﻿using InvestmentManagement.Domain.Contracts.Responses;
 using InvestmentManagement.Domain.Entities;
 using InvestmentManagement.Domain.Interfaces.Repositories;
 using InvestmentManagement.Domain.Interfaces.Services;
 using InvestmentManagement.Domain.Settings;
-using System.Linq.Expressions;
 
 namespace InvestmentManagement.Domain.Services
 {
@@ -28,9 +27,9 @@ namespace InvestmentManagement.Domain.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<UserEntity>> GetAllUsersAsync()
+        public async Task<List<UserEntity>> GetAllUsersAsync()
         {
-            throw new NotImplementedException();
+            return await GetAllAsync();
         }
 
         public Task<UserEntity> GetByIdUserAsync(int id)

@@ -1,3 +1,5 @@
+using InvestmentManagement.Domain.Interfaces.Services;
+using InvestmentManagement.Domain.Services;
 using InvestmentManagement.Domain.Settings;
 using InvestmentManagement.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +22,23 @@ builder.Services.AddDbContext<InvestmentContext>(options =>
 {
     options.UseSqlServer(appSetting.SqlServerConnection);
 });
+
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IInvestmentAccountService, InvestmentAccountService>();
+builder.Services.AddScoped<IPortfolioService, PortfolioService>();
+builder.Services.AddScoped<IOperationService, OperationService>();
+builder.Services.AddScoped<IAssetService, AssetService>();
+
+
+builder.Services.AddDbContext<InvestmentContext>(options => {
+    options.UseSqlServer(appSetting.SqlServerConnection);
  
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -5,6 +5,7 @@
         public PortfolioEntity(int investmentAccountId)
         {
             InvestmentAccountId = investmentAccountId;
+
             CreatedAt = DateTime.Now;
 
             Operations = new List<OperationEntity>();

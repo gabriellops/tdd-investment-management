@@ -4,10 +4,11 @@ namespace InvestmentManagement.Domain.Entities
 {
     public class InvestmentAccountEntity : BaseEntity
     {
-        public InvestmentAccountEntity(int userId, decimal balance)
+        public InvestmentAccountEntity(decimal balance, int userId)
         {
-            UserId = userId;
             Balance = balance;
+            UserId = userId;
+
             CreatedAt = DateTime.Now;
 
             Portfolios = new List<PortfolioEntity>();

@@ -14,33 +14,33 @@ using Xunit;
 
 namespace InvestmentManagement.Tests.API.Controllers
 {
-    [Trait("Controller", "User Controller")]
-    public class UserControllerTest
+    [Trait("Controller", "Asset Controller")]
+    public class AssetControllerTest
     {
         private readonly Fixture _fixture;
-        private readonly IUserService _userService;
+        private readonly IAssetService _assetService;
         private readonly IMapper _mapper;
 
-        public UserControllerTest()
+        public AssetControllerTest()
         {
             _fixture = FixtureConfig.Get();
-            _userService = Substitute.For<IUserService>();
+            _assetService = Substitute.For<IAssetService>();
             _mapper = MapConfig.Get();
         }
 
         [Fact]
         public async Task GetAsync()
         {
-            var entities = _fixture.Create<List<UserEntity>>();
+            var entities = _fixture.Create<List<AssetEntity>>();
 
-            _userService.GetAllAsync()
+            _assetService.GetAllAsync()
                         .Returns(entities);
 
-            var controller = new UserController(_userService, _mapper);
+            var controller = new AssetController(_assetService, _mapper);
 
             var actionResult = await controller.GetAsync();
 
-            var response = (actionResult.Result as OkObjectResult)?.Value.Should().BeAssignableTo<List<UserResponse>>().Subject;
+            var response = (actionResult.Result as OkObjectResult)?.Value.Should().BeAssignableTo<List<AssetResponse>>().Subject;
 
             response.Should().NotBeNull();
             response.Should().HaveCountGreaterThan(0);
@@ -49,16 +49,16 @@ namespace InvestmentManagement.Tests.API.Controllers
         [Fact]
         public async Task GetById()
         {
-            var entity = _fixture.Create<UserEntity>();
+            var entity = _fixture.Create<AssetEntity>();
 
-            _userService.GetByIdUserAsync(Arg.Any<int>())
+            _assetService.GetByIdAsync(Arg.Any<int>())
                         .Returns(entity);
 
-            var controller = new UserController(_userService, _mapper);
+            var controller = new AssetController(_assetService, _mapper);
 
             var actionResult = await controller.GetByIdAsync(entity.Id);
 
-            var response = (actionResult.Result as OkObjectResult)?.Value.Should().BeAssignableTo<UserResponse>().Subject;
+            var response = (actionResult.Result as OkObjectResult)?.Value.Should().BeAssignableTo<AssetResponse>().Subject;
 
             response.Should().NotBeNull();
             response.Id.Should().Be(entity.Id);
@@ -67,12 +67,12 @@ namespace InvestmentManagement.Tests.API.Controllers
         [Fact]
         public async Task Post()
         {
-            var request = _fixture.Create<UserRequest>();
+            var request = _fixture.Create<AssetRequest>();
 
-            _userService.AddAsync(Arg.Any<UserEntity>())
+            _assetService.AddAsync(Arg.Any<AssetEntity>())
                         .Returns(Task.CompletedTask);
 
-            var controller = new UserController(_userService, _mapper);
+            var controller = new AssetController(_assetService, _mapper);
 
             var actionResult = await controller.PostAsync(request);
 
@@ -83,12 +83,12 @@ namespace InvestmentManagement.Tests.API.Controllers
         public async Task Put()
         {
             var id = _fixture.Create<int>();
-            var request = _fixture.Create<UserRequest>();
+            var request = _fixture.Create<AssetRequest>();
 
-            _userService.UpdateAsync(Arg.Any<UserEntity>())
+            _assetService.UpdateAsync(Arg.Any<AssetEntity>())
                         .Returns(Task.CompletedTask);
 
-            var controller = new UserController(_userService, _mapper);
+            var controller = new AssetController(_assetService, _mapper);
 
             var actionResult = await controller.PutAsync(id, request);
 
@@ -100,10 +100,10 @@ namespace InvestmentManagement.Tests.API.Controllers
         {
             var id = _fixture.Create<int>();
 
-            _userService.DeleteAsync(Arg.Any<int>())
+            _assetService.DeleteAsync(Arg.Any<int>())
                         .Returns(Task.CompletedTask);
 
-            var controller = new UserController(_userService, _mapper);
+            var controller = new AssetController(_assetService, _mapper);
 
             var actionResult = await controller.DeleteAsync(id);
 

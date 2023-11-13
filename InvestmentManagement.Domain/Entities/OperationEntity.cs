@@ -6,12 +6,13 @@ namespace InvestmentManagement.Domain.Entities
     {
         public OperationEntity() { }
 
-        public OperationEntity(int portfolioId, int assetId, string type, decimal price)
+        public OperationEntity(string type, decimal price, int portfolioId, int assetId)
         {
-            PortfolioId = portfolioId;
-            AssetId = assetId;
             Type = type;
             Price = price;
+            PortfolioId = portfolioId;
+            AssetId = assetId;
+
             CreatedAt = DateTime.Now;
         }
 

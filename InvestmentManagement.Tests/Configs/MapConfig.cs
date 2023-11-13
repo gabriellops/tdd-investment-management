@@ -8,7 +8,7 @@ namespace InvestmentManagement.Tests.Configs
         {
             var mockMapper = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new Profiles.MappingProfile());
+                cfg.AddProfile(new InvestmentManagement.API.Profiles.MappingProfile());
             });
 
             return mockMapper.CreateMapper();
