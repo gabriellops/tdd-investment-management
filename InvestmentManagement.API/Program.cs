@@ -34,11 +34,6 @@ builder.Services.AddScoped<IOperationService, OperationService>();
 builder.Services.AddScoped<IAssetService, AssetService>();
 
 
-builder.Services.AddDbContext<InvestmentContext>(options => {
-    options.UseSqlServer(appSetting.SqlServerConnection);
- 
-});
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
